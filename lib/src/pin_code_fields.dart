@@ -555,6 +555,14 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
     return _pinTheme.inactiveFillColor;
   }
 
+  // check if need to add boxShadow
+
+  List<BoxShadow>? _addBoxShadow(int index) {
+    if (_selectedIndex > index) return widget.boxShadows;
+
+    return null;
+  }
+
   /// Builds the widget to be shown
   Widget buildChild(int index) {
     if (((_selectedIndex == index) ||
@@ -795,7 +803,8 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
                 color: widget.enableActiveFill
                     ? _getFillColorFromIndex(i)
                     : Colors.transparent,
-                boxShadow: widget.boxShadows,
+                // boxShadow: widget.boxShadows,
+                boxShadow: _addBoxShadow(i),
                 shape: _pinTheme.shape == PinCodeFieldShape.circle
                     ? BoxShape.circle
                     : BoxShape.rectangle,
